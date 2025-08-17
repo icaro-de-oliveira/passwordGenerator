@@ -25,7 +25,6 @@ document.getElementById("copiar").addEventListener("click", () => {
       position: "center",
       backgroundColor: "#28a745",
     }).showToast();
-
   } else {
     Toastify({
       text: "Nenhuma senha para copiar!",

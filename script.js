@@ -6,5 +6,20 @@ function gerarSenha(tamanho = 12) {
     const index = Math.floor(Math.random() * caracteres.length);
     senha += caracteres[index];
   }
-  document.getElementById("senha").innerText = senha;
+  return senha;
 }
+
+document.getElementById("gerar").addEventListener("click", () => {
+  const senha = gerarSenha();
+  document.getElementById("senha").value = senha;
+});
+
+document.getElementById("copiar").addEventListener("click", () => {
+  const campoSenha = document.getElementById("senha");
+  if (campoSenha.value) {
+    navigator.clipboard.writeText(campoSenha.value);
+    alert("Senha copiada!");
+  } else {
+    alert("Nenhuma senha para copiar!");
+  }
+});

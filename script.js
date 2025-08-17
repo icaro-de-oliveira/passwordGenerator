@@ -18,8 +18,21 @@ document.getElementById("copiar").addEventListener("click", () => {
   const campoSenha = document.getElementById("senha");
   if (campoSenha.value) {
     navigator.clipboard.writeText(campoSenha.value);
-    alert("Senha copiada!");
+    Toastify({
+      text: "Senha copiada!",
+      duration: 3000,
+      gravity: "top",
+      position: "center",
+      backgroundColor: "#28a745",
+    }).showToast();
+
   } else {
-    alert("Nenhuma senha para copiar!");
+    Toastify({
+      text: "Nenhuma senha para copiar!",
+      duration: 3000,
+      gravity: "top",
+      position: "center",
+      backgroundColor: "#dc3545",
+    }).showToast();
   }
 });

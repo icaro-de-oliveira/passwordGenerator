@@ -30,8 +30,9 @@ function gerarSenha() {
 
 document.getElementById("gerar").addEventListener("click", () => {
   const senha = gerarSenha();
+  if (senha){
   document.getElementById("senha").value = senha;
-});
+}});
 
 let notificacoesAtivas = 0;
 const LIMITE_NOTIFICACOES = 3;

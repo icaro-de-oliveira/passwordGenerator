@@ -1,6 +1,25 @@
-function gerarSenha(tamanho = 12) {
-  const caracteres =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+function gerarSenha() {
+  const tamanho = Math.min(
+    32,
+    Math.max(4, parseInt(document.getElementById("tamanho").value) || 12)
+  );
+
+  const incluirMaiusculas = document.getElementById("maiusculas").checked;
+  const incluirMinusculas = document.getElementById("minusculas").checked;
+  const incluirNumeros = document.getElementById("numeros").checked;
+  const incluirSimbolos = document.getElementById("simbolos").checked;
+
+  let caracteres = "";
+  if (incluirMaiusculas) caracteres += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  if (incluirMinusculas) caracteres += "abcdefghijklmnopqrstuvwxyz";
+  if (incluirNumeros) caracteres += "0123456789";
+  if (incluirSimbolos) caracteres += "!@#$%^&*()-_=+[]{};:,.<>?/";
+
+  if (caracteres.length === 0) {
+    mostrarToast("Selecione pelo menos uma opção!", "#ffc107"); // #dc3545
+    return "";
+  }
+
   let senha = "";
   for (let i = 0; i < tamanho; i++) {
     const index = Math.floor(Math.random() * caracteres.length);

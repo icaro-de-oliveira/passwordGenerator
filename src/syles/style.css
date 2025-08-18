@@ -49,3 +49,16 @@ h1 {
 #gerar:hover {
   background: #1e7e34;
 }
+.opcoes {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.opcoes input[type="number"] {
+  width: 60px;
+  margin-left: 10px;
+}

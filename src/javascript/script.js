@@ -14,24 +14,33 @@ document.getElementById("gerar").addEventListener("click", () => {
   document.getElementById("senha").value = senha;
 });
 
+let notificacoesAtivas = 0;
+const LIMITE_NOTIFICACOES = 3;
+
+function mostrarToast(texto, cor) {
+  if (notificacoesAtivas >= LIMITE_NOTIFICACOES) return;
+
+  notificacoesAtivas++;
+
+  Toastify({
+    text: texto,
+    duration: 3000,
+    gravity: "top",
+    position: "center",
+    backgroundColor: cor,
+    stopOnFocus: true,
+    callback: () => {
+      notificacoesAtivas--;
+    },
+  }).showToast();
+}
+
 document.getElementById("copiar").addEventListener("click", () => {
   const campoSenha = document.getElementById("senha");
   if (campoSenha.value) {
     navigator.clipboard.writeText(campoSenha.value);
-    Toastify({
-      text: "Senha copiada!",
-      duration: 3000,
-      gravity: "top",
-      position: "center",
-      backgroundColor: "#28a745",
-    }).showToast();
+    mostrarToast("Senha copiada!", "#28a745");
   } else {
-    Toastify({
-      text: "Nenhuma senha para copiar!",
-      duration: 3000,
-      gravity: "top",
-      position: "center",
-      backgroundColor: "#dc3545",
-    }).showToast();
+    mostrarToast("Nenhuma senha para copiar!", "#dc3545");
   }
 });

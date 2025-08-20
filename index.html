@@ -15,7 +15,7 @@
       type="text/css"
       href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
     />
-    <link rel="stylesheet" href="src/syles/style.css" />
+    <link rel="stylesheet" href="src/styles/style.css" />
     <title>Gerador de Senhas</title>
   </head>
   <body>
@@ -29,12 +29,27 @@
     <button id="gerar">Gerar senha</button>
 
     <div class="opcoes">
-      <label>Comprimento <input type="number" id="tamanho" min="4" max="32" value="12"></label>
+      <div class="comprimento-slider-row">
+        <span id="tamanho-valor"></span>
+        <input type="range" id="tamanho-slider" min="4" max="32" value="12">
+      </div>
+
       <label>
-        <input type="checkbox" id="maiusculas" checked> Maiúsculas </label>
-        <input type="checkbox" id="minusculas" checked> Minúsculas </label>
-        <input type="checkbox" id="numeros" checked> Números </label>
-        <input type="checkbox" id="simbolos" checked> Símbolos </label>
+        <input type="checkbox" id="maiusculas" checked />
+        <span>Maiúsculas</span>
+      </label>
+      <label>
+        <input type="checkbox" id="minusculas" checked />
+        <span>Minúsculas</span>
+      </label>
+      <label>
+        <input type="checkbox" id="numeros" checked />
+        <span>Números</span>
+      </label>
+      <label>
+        <input type="checkbox" id="simbolos" checked />
+        <span>Símbolos</span>
+      </label>
     </div>
 
     <script

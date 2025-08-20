@@ -1,8 +1,17 @@
+const slider = document.getElementById("tamanho-slider");
+const valor = document.getElementById("tamanho-valor");
+
+if (slider && valor) {
+  const atualizarValor = () => (valor.textContent = slider.value);
+  slider.addEventListener("input", atualizarValor);
+  atualizarValor();
+}
+
+function getTamanhoSenha() {
+  return slider ? parseInt(slider.value) : 12;
+}
 function gerarSenha() {
-  const tamanho = Math.min(
-    32,
-    Math.max(4, parseInt(document.getElementById("tamanho").value) || 12)
-  );
+  const tamanho = Math.min(32, Math.max(4, getTamanhoSenha() || 12));
 
   const incluirMaiusculas = document.getElementById("maiusculas").checked;
   const incluirMinusculas = document.getElementById("minusculas").checked;
@@ -30,15 +39,21 @@ function gerarSenha() {
 
 document.getElementById("gerar").addEventListener("click", () => {
   const senha = gerarSenha();
-  if (senha){
-  document.getElementById("senha").value = senha;
-}});
+  if (senha) {
+    document.getElementById("senha").value = senha;
+  }
+});
 
 let notificacoesAtivas = 0;
-const LIMITE_NOTIFICACOES = 3;
+function getLimiteNotificacoes() {
+  return window.innerWidth <= 600 || /Mobi|Android/i.test(navigator.userAgent)
+    ? 2
+    : 3;
+}
 
 function mostrarToast(texto, cor) {
-  if (notificacoesAtivas >= LIMITE_NOTIFICACOES) return;
+  const limite = getLimiteNotificacoes();
+  if (notificacoesAtivas >= limite) return;
 
   notificacoesAtivas++;
 
